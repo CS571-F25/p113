@@ -21,7 +21,7 @@ function About() {
           <ol>
             <li>Enter your name in the header</li>
             <li>Browse available study sessions</li>
-            <li>Join sesssions that fit your schedule</li>
+            <li>Join sessions that fit your schedule</li>
             <li>Create your own sessions to find study partners</li>
           </ol>
           <div className="alert alert-info mt-4">
