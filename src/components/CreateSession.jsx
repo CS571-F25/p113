@@ -20,7 +20,7 @@ function CreateSession({ currentUserName, onCreateSession }) {
     setFormData(prev => ({ ...prev, [name]: value }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     
     if (!currentUserName) {
@@ -28,8 +28,9 @@ function CreateSession({ currentUserName, onCreateSession }) {
       return;
     }
 
-    onCreateSession(formData);
+    await onCreateSession(formData);
     
+    // Reset form
     setFormData({
       course: '',
       title: '',
@@ -41,7 +42,7 @@ function CreateSession({ currentUserName, onCreateSession }) {
       description: ''
     });
 
-    alert('Session created successfully!');
+    // Navigate to sessions page
     navigate('/sessions');
   };
 

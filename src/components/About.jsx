@@ -9,7 +9,7 @@ function About() {
           <p className="lead">
             Study Partner Finder helps UW-Madison students connect with peers to make studying easier
           </p>
-          <h5 className="mt-4">Features</h5>
+          <h4 className="mt-4">Features</h4>
           <ul>
             <li>Browse upcoming study sessions for your courses</li>
             <li>Create and host your own study sessions</li>
@@ -17,7 +17,7 @@ function About() {
             <li>Filter and search by course or keywords</li>
             <li>See if your friends are attending</li>
           </ul>
-          <h5 className="mt-4">How to Use</h5>
+          <h4 className="mt-4">How to Use</h4>
           <ol>
             <li>Enter your name in the header</li>
             <li>Browse available study sessions</li>

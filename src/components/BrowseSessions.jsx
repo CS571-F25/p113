@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
 import SessionFilters from './sessions/SessionFilters';
 import SessionCard from './sessions/SessionCard';
+import SessionCountBadge from './sessions/SessionCountBadge';
+import EmptyState from './sessions/EmptyState';
 
-function BrowseSessions({ sessions, currentUserName, onJoin, onLeave }) {
+function BrowseSessions({ sessions, currentUserName, onJoin, onLeave, onDelete }) {
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedCourse, setSelectedCourse] = useState('');
 
@@ -21,7 +23,10 @@ function BrowseSessions({ sessions, currentUserName, onJoin, onLeave }) {
 
   return (
     <div>
-      <h3 className="mb-4">Browse Study Sessions</h3>
+      <h3 className="mb-4">
+        Browse Study Sessions
+        <SessionCountBadge count={filteredSessions.length} />
+      </h3>
       <SessionFilters
         searchQuery={searchQuery}
         onSearchChange={setSearchQuery}
@@ -31,9 +36,11 @@ function BrowseSessions({ sessions, currentUserName, onJoin, onLeave }) {
       />
       
       {filteredSessions.length === 0 ? (
-        <div className="alert alert-info">
-          No sessions found. Try adjusting your filters or create a new session!
-        </div>
+        <EmptyState 
+          message="No sessions found. Try adjusting your filters or create a new session!"
+          actionText="Create a Session"
+          actionPath="/create"
+        />
       ) : (
         filteredSessions.map(session => (
           <SessionCard
@@ -42,6 +49,7 @@ function BrowseSessions({ sessions, currentUserName, onJoin, onLeave }) {
             currentUserName={currentUserName}
             onJoin={onJoin}
             onLeave={onLeave}
+            onDelete={onDelete}
           />
         ))
       )}

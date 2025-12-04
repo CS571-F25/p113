@@ -1,10 +1,11 @@
 import React from 'react';
 import { Card, Button } from 'react-bootstrap';
 
-function SessionCard({ session, currentUserName, onJoin, onLeave }) {
+function SessionCard({ session, currentUserName, onJoin, onLeave, onDelete }) {
   const isJoined = session.attendees.includes(currentUserName);
   const isFull = session.attendees.length >= session.maxSize;
   const canJoin = currentUserName && !isJoined && !isFull;
+  const isCreator = session.creator === currentUserName || session.attendees[0] === currentUserName;
 
   const dt = new Date(session.date);
 
@@ -15,6 +16,9 @@ function SessionCard({ session, currentUserName, onJoin, onLeave }) {
           <div>
             <span className="badge bg-primary me-2">{session.course}</span>
             <h5 className="d-inline">{session.title}</h5>
+            {isCreator && (
+              <span className="badge bg-info ms-2">You created this</span>
+            )}
           </div>
           <span className={`badge ${isFull ? 'bg-danger' : 'bg-success'}`}>
             {session.attendees.length} / {session.maxSize}
@@ -56,9 +60,14 @@ function SessionCard({ session, currentUserName, onJoin, onLeave }) {
               Join Session
             </Button>
           )}
-          {isJoined && (
+          {isJoined && !isCreator && (
             <Button variant="warning" onClick={() => onLeave(session.id)}>
               Leave Session
+            </Button>
+          )}
+          {isCreator && (
+            <Button variant="danger" onClick={() => onDelete(session.id)}>
+              Delete Session
             </Button>
           )}
           {!currentUserName && !isJoined && (

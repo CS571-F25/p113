@@ -1,6 +1,7 @@
 import React from 'react';
 import { Container, Navbar, Nav } from 'react-bootstrap';
 import { Link, Outlet } from 'react-router';
+import UserNameInput from './UserNameInput';
 
 function StudyPartnerLayout({ currentUserName, setCurrentUserName }) {
   return (
@@ -19,17 +20,10 @@ function StudyPartnerLayout({ currentUserName, setCurrentUserName }) {
               <Nav.Link as={Link} to="/about">About</Nav.Link>
             </Nav>
             <Nav>
-              <Navbar.Text className="text-white d-flex align-items-center gap-2">
-                <label className="mb-0">Your Name:</label>
-                <input
-                  type="text"
-                  placeholder="Enter your name..."
-                  value={currentUserName}
-                  onChange={(e) => setCurrentUserName(e.target.value)}
-                  className="form-control form-control-sm"
-                  style={{ width: '180px' }}
-                />
-              </Navbar.Text>
+              <UserNameInput 
+                currentUserName={currentUserName}
+                setCurrentUserName={setCurrentUserName}
+              />
             </Nav>
           </Navbar.Collapse>
         </Container>
