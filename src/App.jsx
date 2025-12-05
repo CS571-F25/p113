@@ -9,7 +9,6 @@ import About from './components/About';
 import LoadingSpinner from './components/LoadingSpinner';
 
 const API_BASE = 'https://cs571api.cs.wisc.edu/rest/f25/bucket';
-const BADGER_ID = 'bid_ffb02167e976793fa672361dae5eed961488fbcf577d8621a9941532ca93fa58';
 
 function App() {
   const [currentUserName, setCurrentUserName] = useState('');
@@ -25,7 +24,7 @@ function App() {
     try {
       const response = await fetch(`${API_BASE}/sessions`, {
         headers: {
-          'X-CS571-ID': BADGER_ID
+          'X-CS571-ID': CS571.getBadgerId()
         }
       });
       const data = await response.json();
@@ -81,7 +80,7 @@ function App() {
       const response = await fetch(`${API_BASE}/sessions?id=${sessionId}`, {
         method: 'PUT',
         headers: {
-          'X-CS571-ID': BADGER_ID,
+          'X-CS571-ID': CS571.getBadgerId(),
           'Content-Type': 'application/json'
         },
         body: JSON.stringify(updatedSession)
@@ -109,7 +108,7 @@ function App() {
       const response = await fetch(`${API_BASE}/sessions?id=${sessionId}`, {
         method: 'PUT',
         headers: {
-          'X-CS571-ID': BADGER_ID,
+          'X-CS571-ID': CS571.getBadgerId(),
           'Content-Type': 'application/json'
         },
         body: JSON.stringify(updatedSession)
@@ -135,7 +134,7 @@ function App() {
       const response = await fetch(`${API_BASE}/sessions`, {
         method: 'POST',
         headers: {
-          'X-CS571-ID': BADGER_ID,
+          'X-CS571-ID': CS571.getBadgerId(),
           'Content-Type': 'application/json'
         },
         body: JSON.stringify(sessionData)
@@ -160,7 +159,7 @@ function App() {
       const response = await fetch(`${API_BASE}/sessions?id=${sessionId}`, {
         method: 'DELETE',
         headers: {
-          'X-CS571-ID': BADGER_ID
+          'X-CS571-ID': CS571.getBadgerId()
         }
       });
 
